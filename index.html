@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Caleidoscopio</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --tenue: rgba(255, 255, 255, 0.62);
+      --claro: rgba(255, 255, 255, 0.86);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      height: 100%;
+      background: #000;
+      overflow: hidden;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      cursor: crosshair;
+      touch-action: none;
+    }
+
+    .pista {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 78px;
+      margin: 0;
+      text-align: center;
+      color: var(--tenue);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: lowercase;
+      pointer-events: none;
+      transition: opacity 1.4s ease;
+    }
+
+    .pista.oculta { opacity: 0; }
+
+    .ui {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 28px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 28px;
+      user-select: none;
+    }
+
+    button {
+      background: none;
+      border: 0;
+      padding: 8px 2px;
+      color: var(--tenue);
+      font: inherit;
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      text-transform: lowercase;
+      cursor: pointer;
+    }
+
+    button:hover,
+    button:focus-visible {
+      color: var(--claro);
+      outline: none;
+    }
+
+    .sectores {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nombre {
+      color: var(--tenue);
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: lowercase;
+    }
+
+    .sectores button {
+      width: 32px;
+      font-size: 18px;
+      letter-spacing: 0;
+      line-height: 1;
+    }
+
+    .valor {
+      min-width: 1.6em;
+      text-align: center;
+      color: var(--claro);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      font-variant-numeric: tabular-nums;
+    }
+  </style>
+</head>
+<body>
+  <p class="pista" id="pista">dibuja · ajusta el pincel antes de trazar</p>
+  <div class="ui">
+    <div class="sectores">
+      <span class="nombre">espejos</span>
+      <button id="menos" type="button" aria-label="Menos sectores">−</button>
+      <span class="valor" id="cuenta" aria-live="polite">6</span>
+      <button id="mas" type="button" aria-label="Más sectores">+</button>
+    </div>
+    <div class="sectores">
+      <span class="nombre">pincel</span>
+      <button id="pincel-menos" type="button" aria-label="Pincel más fino">−</button>
+      <span class="valor" id="pincel" aria-live="polite">14</span>
+      <button id="pincel-mas" type="button" aria-label="Pincel más grueso">+</button>
+    </div>
+    <button id="borrar" type="button">borrar</button>
+    <button id="guardar" type="button">guardar</button>
+  </div>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "./vendor/three.module.js"
+      }
+    }
+  </script>
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
